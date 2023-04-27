@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { PlaylistsRoutingModule } from './playlists-routing.module';
 import { PlaylistsViewContainer } from './containers/playlists-view/playlists-view.container';
 import { PlaylistsListComponent } from './components/playlists-list/playlists-list.component';
 import { PlaylistsDetailsComponent } from './components/playlists-details/playlists-details.component';
 import { PlaylistsEditorComponent } from './components/playlists-editor/playlists-editor.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -16,7 +16,7 @@ import { PlaylistsEditorComponent } from './components/playlists-editor/playlist
     PlaylistsEditorComponent
   ],
   imports: [
-    CommonModule,
+    SharedModule,
     PlaylistsRoutingModule
   ],
   exports: [

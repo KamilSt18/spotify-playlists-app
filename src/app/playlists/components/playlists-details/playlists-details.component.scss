@@ -1,0 +1,10 @@
+.is-public,
+.is-private {
+  border-bottom: 2px solid currentColor;
+}
+.is-public {
+  color: green;
+}
+.is-private {
+  color: red;
+}

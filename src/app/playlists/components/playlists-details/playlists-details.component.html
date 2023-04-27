@@ -1,12 +1,17 @@
-<dl>
+<dl [id]="'playlist-' + playlist.id" [attr.data-playlist-id]="playlist.id">
   <dt>Name</dt>
-  <dd>Playlista ABC</dd>
+  <dd>{{ playlist.name }}</dd>
 
   <dt>Public</dt>
-  <dd>Yes</dd>
+  <dd
+    [ngClass]="{
+      'is-private': !playlist.public,
+      'is-public': playlist.public
+    }"
+  >
+    {{ playlist.public ? "Yes" : "No" }}
+  </dd>
 
   <dt>Description</dt>
-  <dd>Best playlist</dd>
+  <dd>{{ playlist.description }}</dd>
 </dl>
-
-<button class="btn btn-primary">Edit</button>

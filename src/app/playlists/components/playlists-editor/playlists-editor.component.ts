@@ -6,5 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./playlists-editor.component.scss']
 })
 export class PlaylistsEditorComponent {
-
+  playlist = {
+    id: '123',
+    name: 'Playlist ABC',
+    public: true,
+    description: 'Awesome playlist',
+  };
 }
