@@ -1,14 +1,22 @@
 <p>Select playlist</p>
 
 <div class="row">
-    <div class="col"><app-playlists-list></app-playlists-list></div>
-    <div class="col">
+  <div class="col">
+    <app-playlists-list
+      [items]="playlists"
+      [selectedId]="selectedId"
+      (selectedIdChange)="selectPlaylistById($event)"
+    ></app-playlists-list>
+  </div>
 
-        <button class="btn btn-info" (click)="detailsMode()">Details</button>
-        <button class="btn btn-primary" (click)="editorMode()">Edit</button>
-        {{mode}}
-        
-        <app-playlists-details [hidden]="mode !== 'details'"></app-playlists-details>
-        <app-playlists-editor [hidden]="mode !== 'editor'"></app-playlists-editor>
-    </div>
-</div>`
+  <div class="col">
+    <button class="btn btn-primary" (click)="editorMode()">Edit</button>
+
+    <button class="btn btn-danger" (click)="detailsMode()">Cancel</button>
+
+    <ng-container [ngSwitch]="mode">
+      <app-playlists-details [playlist]="selected" *ngSwitchDefault></app-playlists-details>
+      <app-playlists-editor *ngSwitchCase="'editor'"></app-playlists-editor>
+    </ng-container>
+  </div>
+</div>
