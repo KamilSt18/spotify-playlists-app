@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Playlist } from './Playlist';
 
 @Component({
   selector: 'app-playlists-view',
@@ -6,7 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./playlists-view.container.scss'],
 })
 export class PlaylistsViewContainer {
-  playlists = [
+  playlists: Playlist[] = [
     {
       id: '123',
       name: 'Playlist 123',
@@ -27,12 +28,12 @@ export class PlaylistsViewContainer {
     },
   ];
 
-  selectedId = '234';
-  selected = this.playlists[1];
+  selectedId = '';
+  selected?: Playlist;
 
-  selectPlaylistById(id: string) {
-    this.selectedId = id
-    this.selected = this.playlists.find((p) => p.id === id)!;
+  selectPlaylistById(id: Playlist['id']) {
+    this.selectedId = id;
+    this.selected = this.playlists.find((p) => p.id === id);
   }
 
   mode: 'details' | 'editor' = 'details';
@@ -44,4 +45,12 @@ export class PlaylistsViewContainer {
   editorMode() {
     this.mode = 'editor';
   }
+
+  savePlaylist(draft: Playlist) {
+    const index = this.playlists.findIndex(playlist => playlist.id === draft.id)
+    this.playlists[index] = draft
+    this.selectPlaylistById(draft.id)
+    this.mode = 'details';
+  }
+  
 }

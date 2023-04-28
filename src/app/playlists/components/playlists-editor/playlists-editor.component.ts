@@ -1,15 +1,33 @@
-import { Component } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
+import { Playlist } from '../../containers/playlists-view/Playlist';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-playlists-editor',
   templateUrl: './playlists-editor.component.html',
-  styleUrls: ['./playlists-editor.component.scss']
+  styleUrls: ['./playlists-editor.component.scss'],
 })
 export class PlaylistsEditorComponent {
-  playlist = {
-    id: '123',
-    name: 'Playlist ABC',
-    public: true,
-    description: 'Awesome playlist',
-  };
+  @Input() playlist?: Playlist;
+
+  @Output() cancelClickChange = new EventEmitter();
+  @Output() saveClickChange = new EventEmitter<Playlist>();
+
+  cancelClickHandler() {
+    this.cancelClickChange.emit();
+  }
+
+  saveClickHandler(formRef: NgForm) {
+    const draft: Playlist = {
+      ...this.playlist,
+      ...formRef.value
+    }
+    this.saveClickChange.emit(draft);
+  }
 }

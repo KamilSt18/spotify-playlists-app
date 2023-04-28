@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Playlist } from '../../containers/playlists-view/Playlist';
 
 @Component({
   selector: 'app-playlists-list',
@@ -7,19 +8,13 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class PlaylistsListComponent {
 
-  @Input('items') playlists = [{
-    id: '',
-    name: ' ',
-    public: false,
-    description: '',
-  },
-  ]
+  @Input('items') playlists: Playlist[] = []
 
   @Input() selectedId = ''
 
-  @Output() selectedIdChange = new EventEmitter<string>();
+  @Output() selectedIdChange = new EventEmitter<Playlist['id']>();
 
-  select(id: string) {
+  select(id: Playlist['id']) {
     this.selectedIdChange.emit(id)
   }
 

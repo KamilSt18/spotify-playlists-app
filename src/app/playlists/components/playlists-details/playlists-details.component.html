@@ -1,17 +1,26 @@
-<dl [id]="'playlist-' + playlist.id" [attr.data-playlist-id]="playlist.id">
-  <dt>Name</dt>
-  <dd>{{ playlist.name }}</dd>
+<ng-container *ngIf="playlist; else noPlaylist">
+  <dl [id]="'playlist-' + playlist.id" [attr.data-playlist-id]="playlist.id">
+    <dt>Name</dt>
+    <dd>{{ playlist.name }}</dd>
+  
+    <dt>Public</dt>
+    <dd
+      [ngClass]="{
+        'is-private': !playlist.public,
+        'is-public': playlist.public
+      }"
+    >
+      {{ playlist.public ? "Yes" : "No" }}
+    </dd>
+  
+    <dt>Description</dt>
+    <dd>{{ playlist.description }}</dd>
+  </dl>
 
-  <dt>Public</dt>
-  <dd
-    [ngClass]="{
-      'is-private': !playlist.public,
-      'is-public': playlist.public
-    }"
-  >
-    {{ playlist.public ? "Yes" : "No" }}
-  </dd>
+  <button class="btn btn-primary" (click)="editClickHandler()">Edit</button>
+</ng-container>
 
-  <dt>Description</dt>
-  <dd>{{ playlist.description }}</dd>
-</dl>
+
+<ng-template #noPlaylist>
+  <p class="alert alert-info">No playlist selected</p>
+</ng-template>

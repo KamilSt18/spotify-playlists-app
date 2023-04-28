@@ -10,13 +10,18 @@
   </div>
 
   <div class="col">
-    <button class="btn btn-primary" (click)="editorMode()">Edit</button>
-
-    <button class="btn btn-danger" (click)="detailsMode()">Cancel</button>
 
     <ng-container [ngSwitch]="mode">
-      <app-playlists-details [playlist]="selected" *ngSwitchDefault></app-playlists-details>
-      <app-playlists-editor *ngSwitchCase="'editor'"></app-playlists-editor>
+      <app-playlists-details
+      [playlist]="selected" 
+      (editClickChange)="editorMode()"
+      *ngSwitchDefault></app-playlists-details>
+
+      <app-playlists-editor
+      [playlist]="selected"
+      (cancelClickChange)="detailsMode()"
+      (saveClickChange)="savePlaylist($event)"
+      *ngSwitchCase="'editor'"></app-playlists-editor>
     </ng-container>
   </div>
 </div>
