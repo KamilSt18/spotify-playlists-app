@@ -1,6 +1,6 @@
-<div class="card">
-    <img src="http://placekitten.com/g/300/300" class="card-img-top" alt="..." />
+<div class="card" *ngIf="result">
+    <img [src]="result.images[0].url" class="card-img-top" alt="..." width="300" height="300" />
     <div class="card-body">
-      <h5 class="card-title">Album title</h5>
+      <h5 class="card-title">{{result.name}}</h5>
     </div>
   </div>

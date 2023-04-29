@@ -1,7 +1,7 @@
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-2">
 
-  <div class="col" *ngFor="let result of [1,2,3,4,5]">
-    <app-album-card></app-album-card>
+  <div class="col" *ngFor="let result of results">
+    <app-album-card [result]="result"></app-album-card>
   </div>
 
 </div>

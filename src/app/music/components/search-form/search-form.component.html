@@ -1,6 +1,17 @@
 <div class="mb-3">
   <div class="input-group">
-    <input type="text" class="form-control" placeholder="Search" />
-    <button class="btn btn-outline-secondary" type="button">Search</button>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Search"
+      [(ngModel)]="query"
+    />
+    <button
+      class="btn btn-outline-secondary"
+      type="button"
+      (click)="searchClickHandler()"
+    >
+      Search
+    </button>
   </div>
 </div>

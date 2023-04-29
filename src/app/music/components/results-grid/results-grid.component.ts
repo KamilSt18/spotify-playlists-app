@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Album } from '../../model/Album';
 
 @Component({
   selector: 'app-results-grid',
@@ -6,5 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./results-grid.component.scss']
 })
 export class ResultsGridComponent {
+
+  @Input() results: Album[] = []
 
 }
