@@ -16,12 +16,13 @@ export class AlbumSearchViewContainer {
   search(query: string) {
     this.message = ''
 
-    this.service.fetchAlbumSearchResults(query).subscribe({
-      next: (res) => {
-        this.results = res.albums.items
+    this.service.fetchAlbumSearchResults(query)
+    .subscribe({
+      next: (albums) => {
+        this.results = albums
       },
       error: (err) => {
-        this.message = err.error.error.message
+        this.message = err.message
       },
     });
   }
