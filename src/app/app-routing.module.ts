@@ -7,11 +7,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'playlists',
-  },
-  {
-    path: 'playlists',
-    component: PlaylistsViewContainer,
+    redirectTo: 'music',
   },
   { path: '**', component: PageNotFoundComponent },
 ];

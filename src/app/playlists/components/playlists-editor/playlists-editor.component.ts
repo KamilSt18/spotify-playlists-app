@@ -23,11 +23,11 @@ export class PlaylistsEditorComponent {
     this.cancelClickChange.emit();
   }
 
-  saveClickHandler(formRef: NgForm) {
+  submitEditorHandler(formRef: NgForm) {
     const draft: Playlist = {
       ...this.playlist,
-      ...formRef.value
-    }
+      ...formRef.value,
+    };
     this.saveClickChange.emit(draft);
   }
 }
