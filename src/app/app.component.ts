@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from './core/services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -6,21 +7,21 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'Hello';
+  constructor(private auth: AuthService) {}
+  
+  loggedIn = false;
 
-  user = {
-    name: '',
-  };
+  ngOnInit(): void {
+    this.auth.init()
+
+    this.loggedIn = Boolean(this.auth.getToken())
+  }
 
   zaloguj(event: MouseEvent) {
-    this.user = {
-      name: 'Admin',
-    };
-}
+    this.auth.login()
+  }
 
   wyloguj(event: MouseEvent) {
-    this.user = {
-      name: '',
-    };
-}
+    this.auth.logout()
+  }
 }

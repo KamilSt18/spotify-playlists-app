@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MusicApiService } from 'src/app/core/services/music-api/music-api.service';
-import { Album } from '../../model/Album';
+import { Album, AlbumSearchResponse } from '../../model/Album';
 
 @Component({
   selector: 'app-album-search-view',
@@ -11,12 +11,18 @@ export class AlbumSearchViewContainer {
   constructor(@Inject(MusicApiService) private service: MusicApiService) {}
 
   results: Album[] = [];
-
-  // ngOnInit(): void {
-  //  this.search('test')
-  // }
+  message = '';
 
   search(query: string) {
-    this.results = this.service.fetchAlbumSearchResults(query)
+    this.message = ''
+
+    this.service.fetchAlbumSearchResults(query).subscribe({
+      next: (res) => {
+        this.results = res.albums.items
+      },
+      error: (err) => {
+        this.message = err.error.error.message
+      },
+    });
   }
 }

@@ -1,17 +1,18 @@
-<div class="mb-3">
+<form class="mb-3" (ngSubmit)="searchClickHandler()">
   <div class="input-group">
     <input
       type="text"
       class="form-control"
       placeholder="Search"
       [(ngModel)]="query"
+      name="query"
     />
     <button
       class="btn btn-outline-secondary"
       type="button"
-      (click)="searchClickHandler()"
+      type="submit"
     >
       Search
     </button>
   </div>
-</div>
+</form>

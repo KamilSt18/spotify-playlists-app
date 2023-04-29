@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h3>Welcome {{ user.name || "Guest" }}</h3>
-
-      <!-- <button (click)="zaloguj($event)" [hidden]="user.name !== ''">Login</button>
-            <button (click)="wyloguj($event)" [hidden]="user.name === ''">Logout</button> -->
-
+      
+      <button (click)="zaloguj($event)" *ngIf="!loggedIn">Login</button>
+      <button (click)="wyloguj($event)" *ngIf="loggedIn">Logout</button>
+      
+      <h3>Welcome </h3>
       <router-outlet></router-outlet>
     </div>
   </div>
