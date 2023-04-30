@@ -10,6 +10,7 @@ export class AppComponent {
   constructor(private auth: AuthService) {}
   
   loggedIn = false;
+  open = false;
 
   ngOnInit(): void {
     this.auth.init()

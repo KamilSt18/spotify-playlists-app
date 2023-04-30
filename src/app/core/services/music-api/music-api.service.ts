@@ -1,6 +1,4 @@
 import { Inject, Injectable } from '@angular/core';
-import { mockAlbums } from './mockAlbums';
-import { environment } from 'src/environments/environment.development';
 import { API_URL } from '../../API_URL';
 
 import { HttpClient } from '@angular/common/http';
