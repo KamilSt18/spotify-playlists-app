@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Album } from '../../model/Album';
+import { Album } from '../../model/AlbumSearchResponse';
 
 @Component({
   selector: 'app-search-form',

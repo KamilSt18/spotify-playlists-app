@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { MusicApiService } from 'src/app/core/services/music-api/music-api.service';
-import { Album } from '../../model/Album';
+import { Album } from '../../model/AlbumSearchResponse';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription, filter, map, switchMap } from 'rxjs';
 
@@ -19,7 +19,7 @@ export class AlbumSearchViewContainer {
   results: Album[] = [];
   message = '';
   query = '';
-  sub = new Subscription();
+  subscriptions = new Subscription();
 
   ngOnInit(): void {
     const queryChanges = this.route.queryParamMap.pipe(
@@ -27,7 +27,7 @@ export class AlbumSearchViewContainer {
       filter(Boolean)
     );
 
-    this.sub.add(
+    this.subscriptions.add(
       queryChanges
         .pipe(switchMap((query) => this.service.fetchAlbumSearchResults(query)))
         .subscribe({
@@ -40,17 +40,18 @@ export class AlbumSearchViewContainer {
         })
     );
 
-    queryChanges.subscribe((query) => {
-      this.query = query;
-    });
-    
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    this.subscriptions.add(
+      queryChanges.subscribe((query) => {
+        this.query = query;
+      })
+    );
   }
 
   search(query: string) {
+    if (!query) {
+      this.message = 'No search query';
+      return;
+    }
     // reset error
     this.message = '';
 
@@ -61,5 +62,9 @@ export class AlbumSearchViewContainer {
         q: query,
       },
     });
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 }

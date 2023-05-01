@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
   <div class="container">
-    <a class="navbar-brand" routerLinkActive="active" routerLink="/">Spotify Playlist App</a>
+    <a class="navbar-brand text-success" routerLinkActive="active" routerLink="/">Spotify Playlist App</a>
     <button class="navbar-toggler" type="button" (click)="open = !open">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -15,8 +15,8 @@
       </ul>
 
       <div class="ms-auto navbar-text">
-        <button class="btn btn-outline-info" (click)="zaloguj($event)" *ngIf="!loggedIn">Login</button>
-        <button class="btn btn-outline-info" (click)="wyloguj($event)" *ngIf="loggedIn">Logout</button>
+        <button class="btn btn-outline-success" (click)="zaloguj($event)" *ngIf="!currentUser">Login</button>
+        <button class="btn btn-outline-success" (click)="wyloguj($event)" *ngIf="currentUser">Logout</button>
       </div>
     </div>
   </div>
@@ -25,7 +25,9 @@
 <div class="container">
   <div class="row">
     <div class="col">
-      <h3 class="mb-3">Welcome!</h3>
+      
+      <h3 class="mb-3" *ngIf="currentUser">Welcome, <a class="text-decoration-none text-success" [href]="currentUser.external_urls.spotify" target="_blank">{{currentUser.display_name}}</a>!</h3>
+      <p class="alert alert-danger" *ngIf="message">{{message}}</p>
       <router-outlet></router-outlet>
     </div>
   </div>

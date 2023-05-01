@@ -1,6 +1,8 @@
-<div class="card" *ngIf="result">
-    <img [src]="result.images[0].url" class="card-img-top" alt="..." width="300" height="300" />
-    <div class="card-body">
-      <h5 class="card-title">{{result.name}}</h5>
-    </div>
+<a class="text-decoration-none text-success" [routerLink]="'../albums/'+result.id" *ngIf="result">
+  <div class="card" *ngIf="result">
+      <img [src]="result.images[0].url" class="card-img-top" alt="..." width="300" height="300" />
+      <div class="card-body">
+        <h5 class="card-title">{{result.name}}</h5>
+      </div>
   </div>
+</a>
