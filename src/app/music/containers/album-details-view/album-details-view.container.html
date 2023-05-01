@@ -1,48 +1,80 @@
-<a class="text-decoration-none text-dark" [href]="albumDetails.external_urls.spotify" target="_blank" *ngIf="albumDetails">
-    <div class="card mb-3">
-      <div class="row g-0">
-        <div class="col-md-4">
-          <img
-            [src]="albumDetails.images[0].url"
-            class="img-fluid rounded-start"
-            alt="..."
-          />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <h5 class="card-title"><h3>{{albumDetails.name}}</h3></h5>
-            <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+<div class="card mb-3" *ngIf="albumDetails">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <img
+        [src]="albumDetails.images[0].url"
+        class="img-fluid rounded-start"
+        alt="..."
+      />
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title"><h3>{{albumDetails.name}}</h3></h5>
+
+        <div class="row">
+          <div class="col">
             <p>Artists:</p>
             <ul>
               <li *ngFor="let artist of albumDetails.artists">
-                <a class="text-decoration-none text-success" href="{{ artist.external_urls.spotify }}" target="_blank"
+                <a
+                  class="text-decoration-none text-success"
+                  href="{{ artist.external_urls.spotify }}"
+                  target="_blank"
                   >{{ artist.name }}</a
                 >
               </li>
             </ul>
-    
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item"><strong>Album type:</strong> {{ albumDetails.album_type }}</li>
-              <li class="list-group-item"><strong>Label:</strong> {{ albumDetails.label }}</li>
-              <li class="list-group-item"><strong>Popularity:</strong> {{ albumDetails.popularity }}</li>
-              <li class="list-group-item"><strong>Total tracks:</strong> {{ albumDetails.total_tracks }}</li>
-              <li class="list-group-item"><strong>Tracks:</strong> 
-                <ul>
-                    <li *ngFor="let item of albumDetails.tracks.items"><a class="text-decoration-none text-primary" [href]="item.external_urls.spotify" target="_blank">
-                        <span *ngFor="let artist of item.artists">{{artist.name}} </span>
-                        - {{ item.name }}
-                    </a></li>
-                </ul>
-            </li>
-            </ul>
-            <p class="card-text">
-              <small class="text-muted"
-                >Release date: {{albumDetails.release_date}} <br />
-                {{albumDetails.copyrights[0].text}}</small
-              >
-            </p>
+          </div>
+          <div class="col">
+            <a [href]="albumDetails.external_urls.spotify" target="_blank">
+
+              <div class="bg-success rounded-circle d-flex justify-content-center align-items-center mx-auto text-black" style="width: 120px; height: 120px;">
+                <fa-icon class="fa-4x" [icon]="faPlay"></fa-icon>
+              </div>
+              
+            </a>
           </div>
         </div>
+
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <strong>Album type:</strong> {{ albumDetails.album_type }}
+          </li>
+          <li class="list-group-item">
+            <strong>Label:</strong> {{ albumDetails.label }}
+          </li>
+          <li class="list-group-item">
+            <strong>Popularity:</strong> {{ albumDetails.popularity }}
+          </li>
+          <li class="list-group-item">
+            <strong>Total tracks:</strong> {{ albumDetails.total_tracks }}
+          </li>
+          <li class="list-group-item">
+            <strong>Tracks:</strong>
+            <ul>
+              <li *ngFor="let item of albumDetails.tracks.items">
+                <a
+                  class="text-decoration-none text-primary"
+                  [href]="item.external_urls.spotify"
+                  target="_blank"
+                >
+                  <span *ngFor="let artist of item.artists"
+                    >{{artist.name}}
+                  </span>
+                  - {{ item.name }}
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+        <p class="card-text">
+          <small class="text-muted"
+            >Release date: {{albumDetails.release_date}} <br />
+            {{albumDetails.copyrights[0].text}}</small
+          >
+        </p>
       </div>
     </div>
-</a>
+  </div>
+</div>
+<p class="alert alert-danger" *ngIf="message" >{{message}}</p>

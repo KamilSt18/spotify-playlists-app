@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AuthService } from './core/services/auth/auth.service';
 import { MusicApiService } from './core/services/music-api/music-api.service';
 import { UserResponse } from './shared/models/UserResponse';
+import { faFacebook, faGithub, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,14 @@ export class AppComponent {
   open = false;
   message = '';
   currentUser?: UserResponse;
+  dateYear = new Date().getFullYear();
+  blendHeader = '/assets/Blend-Header.webp';
+  // icons
+  faFacebook = faFacebook
+  faTwitter = faTwitter
+  faInstagram = faInstagram
+  faLinkedin = faLinkedin
+  faGithub = faGithub
 
   ngOnInit(): void {
     this.auth.init();
@@ -24,17 +33,17 @@ export class AppComponent {
     if (this.loggedIn) {
       this.service.fetchUserProfile().subscribe({
         next: (user) => (this.currentUser = user),
-        error: (err) => (this.message = err),
+        error: (err) => (this.message = err.message),
       });
     }
   }
 
-  zaloguj(event: MouseEvent) {
+  login(event: MouseEvent) {
     this.auth.login();
   }
 
-  wyloguj(event: MouseEvent) {
+  logout(event: MouseEvent) {
     this.auth.logout();
-    this.currentUser = undefined
+    this.currentUser = undefined;
   }
 }

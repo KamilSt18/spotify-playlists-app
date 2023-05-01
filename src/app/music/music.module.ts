@@ -8,6 +8,7 @@ import { SearchFormComponent } from './components/search-form/search-form.compon
 import { ResultsGridComponent } from './components/results-grid/results-grid.component';
 import { AlbumCardComponent } from './components/album-card/album-card.component';
 import { SharedModule } from '../shared/shared.module';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 
 @NgModule({
@@ -20,7 +21,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     SharedModule,
-    MusicRoutingModule
+    MusicRoutingModule,
   ]
 })
 export class MusicModule { }

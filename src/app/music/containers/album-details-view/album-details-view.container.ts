@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MusicApiService } from 'src/app/core/services/music-api/music-api.service';
 import { AlbumDetailsResponse } from '../../model/AlbumDetailsResponse';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-album-details-view',
@@ -18,13 +19,15 @@ export class AlbumDetailsViewContainer {
   id = '';
   subscriptions = new Subscription();
   albumDetails?: AlbumDetailsResponse;
+  faPlay = faPlay;
+  message = '';
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['albumId'];
 
     this.service.fetchAlbumDetails(this.id).subscribe({
       next: (res) => (this.albumDetails = res),
-      error: (err) => console.log(err),
+      error: (err) => this.message = err.message,
     });
   }
 }

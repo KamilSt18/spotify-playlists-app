@@ -10,6 +10,7 @@ import {
   AlbumDetailsResponse,
   Artist,
 } from 'src/app/music/model/AlbumDetailsResponse';
+import { CustomError } from './CustomError';
 
 @Injectable({
   providedIn: 'root',
@@ -49,7 +50,7 @@ export class MusicApiService {
       })
       .pipe(
         catchError((err) => {
-          return throwError(() => new Error(err.error.error.message));
+          return throwError(() => (Error(err.error.error.message)));
         })
       );
   }
