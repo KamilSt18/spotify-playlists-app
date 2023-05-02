@@ -1,27 +1,40 @@
-# SpotifyPlaylistsApp
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.6.
+# Spotify Playlist App
 
-## Development server
+Web-based application for managing playlists in your Spotify account.
+## 💻 Built with
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Technologies used in the project: Angular 15 / Typescript, Bootstrap 5, rxjs, angular-oauth2-oidc, fortawesome.
 
-## Code scaffolding
+## Screenshots
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+![App Screenshot](https://deepit.pl/spotify-playlists-app/search.png)
 
-## Build
+![App Screenshot](https://deepit.pl/spotify-playlists-app/details.png)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+![App Screenshot](https://deepit.pl/spotify-playlists-app/playlists.png)
 
-## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+To install the project and its dependencies, clone the repository and run the following command in the project directory:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+```bash
+  npm i
+```
 
-## Further help
+Run the project:
+```bash
+  npm start
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+The application should be running at http://localhost:4200.
+## Feedback
+
+If you have any feedback, please reach out to us at kamilst18@gmail.com
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
