@@ -8,9 +8,8 @@ describe('AlbumSearchViewContainer', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AlbumSearchViewContainer ]
-    })
-    .compileComponents();
+      declarations: [AlbumSearchViewContainer],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AlbumSearchViewContainer);
     component = fixture.componentInstance;

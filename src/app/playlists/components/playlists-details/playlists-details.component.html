@@ -1,26 +1,54 @@
 <ng-container *ngIf="playlist; else noPlaylist">
-  <dl [id]="'playlist-' + playlist.id" [attr.data-playlist-id]="playlist.id">
-    <dt>Name</dt>
-    <dd>{{ playlist.name }}</dd>
-  
-    <dt>Public</dt>
-    <dd
-      [ngClass]="{
-        'is-private': !playlist.public,
-        'is-public': playlist.public
-      }"
-    >
-      {{ playlist.public ? "Yes" : "No" }}
-    </dd>
-  
-    <dt>Description</dt>
-    <dd>{{ playlist.description }}</dd>
-  </dl>
+  <div class="row">
+    <div class="col">
+      <dl
+        [id]="'playlist-' + playlist.id"
+        [attr.data-playlist-id]="playlist.id"
+      >
+        <dt>Name</dt>
+        <dd>{{ playlist.name }}</dd>
 
-  <button class="btn btn-primary" (click)="editClickHandler()">Edit</button>
+        <dt>Public</dt>
+        <dd
+          [ngClass]="{
+            'is-private': !playlist.public,
+            'is-public': playlist.public
+          }"
+        >
+          {{ playlist.public ? "Yes" : "No" }}
+        </dd>
+
+        <dt>Description</dt>
+        <dd>{{ playlist.description || '-'  }}</dd>
+
+        <dt>Collaborative</dt>
+        <dd
+          [ngClass]="{
+            'is-private': !playlist.collaborative,
+            'is-public': playlist.collaborative
+          }"
+        >
+          {{ playlist.collaborative ? "Yes" : "No" }}
+        </dd>
+      </dl>
+
+      <dt>Owner</dt>
+      <dd>{{ playlist.owner.display_name }}</dd>
+      
+      <dt>Total track</dt>
+      <dd>{{ playlist.tracks.total }}</dd>
+
+      <div class="d-flex">
+        <button class="btn btn-primary w-50 btn-lg mx-1" (click)="editClickHandler()">Edit</button>
+        <a class="btn btn-success w-50 btn-lg mx-1" [href]="playlist.external_urls.spotify" target="_blank">View</a>
+      </div>
+    </div>
+    <div class="col">
+      <img [src]="playlist.images.length ? playlist.images[0].url :  '/assets/placeholder-image.svg'" alt="" width="300" height="300" />
+    </div>
+  </div>
 </ng-container>
 
-
 <ng-template #noPlaylist>
-  <p class="alert alert-info">No playlist selected</p>
+  <p class="alert alert-success">No playlist selected</p>
 </ng-template>

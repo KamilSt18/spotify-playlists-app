@@ -8,9 +8,8 @@ describe('PlaylistsViewContainer', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PlaylistsViewContainer ]
-    })
-    .compileComponents();
+      declarations: [PlaylistsViewContainer],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PlaylistsViewContainer);
     component = fixture.componentInstance;

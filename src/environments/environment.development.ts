@@ -2,10 +2,10 @@ import { AuthConfig } from 'angular-oauth2-oidc';
 
 export const authConfig: AuthConfig = {
   // Url of the Identity Provider
-//   issuer: 'https://idsvr4.azurewebsites.net',
-    oidc: false,
+  //   issuer: 'https://idsvr4.azurewebsites.net',
+  oidc: false,
 
-    loginUrl: 'https://accounts.spotify.com/authorize',
+  loginUrl: 'https://accounts.spotify.com/authorize',
 
   // URL of the SPA to redirect the user to after login
   redirectUri: window.location.origin + '/index.html',
@@ -26,15 +26,14 @@ export const authConfig: AuthConfig = {
   // The first four are defined by OIDC.
   // Important: Request offline_access to get a refresh token
   // The api scope is a usecase specific one
-  scope: 'user-read-private user-read-email',
+  scope:
+    'user-read-private user-read-email playlist-modify-public playlist-modify-private playlist-read-private',
 
   showDebugInformation: true,
 };
 
-
-
 export const environment = {
-    production: false,
-    api_url: 'https://api.spotify.com/v1/',
-    authConfig,
+  production: false,
+  api_url: 'https://api.spotify.com/v1/',
+  authConfig,
 };

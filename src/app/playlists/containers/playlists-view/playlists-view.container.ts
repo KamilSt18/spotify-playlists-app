@@ -1,26 +1,7 @@
 import { Component } from '@angular/core';
 import { Playlist } from './Playlist';
-
-const mockPlaylists = [
-  {
-    id: '123',
-    name: 'Playlist 123',
-    public: true,
-    description: 'Awesome playlist',
-  },
-  {
-    id: '234',
-    name: 'Playlist 234',
-    public: true,
-    description: 'Best playlist',
-  },
-  {
-    id: '345',
-    name: 'Playlist 345',
-    public: false,
-    description: 'Cool playlist',
-  },
-];
+import { MusicApiService } from 'src/app/core/services/music-api/music-api.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-playlists-view',
@@ -28,14 +9,50 @@ const mockPlaylists = [
   styleUrls: ['./playlists-view.container.scss'],
 })
 export class PlaylistsViewContainer {
-  playlists: Playlist[] = mockPlaylists;
+  constructor(private service: MusicApiService) {}
+
+  playlists?: Playlist[];
 
   selectedId = '';
   selected?: Playlist;
+  messageSuccess = '';
+  messageError = '';
+
+  loadData() {
+    this.service.fetchUserPlaylists().subscribe({
+      next: (res) => (this.playlists = res.items),
+      error: (err) => (this.messageError = err.message),
+    });
+  }
+
+  setMessage(type: 'SUCCESS' | 'ERROR', msg: string) {
+    if (type === 'SUCCESS') {
+      this.messageSuccess = msg;
+      setTimeout(() => {
+        this.messageSuccess = '';
+      }, 3000);
+    } else {
+      this.messageError = msg;
+      setTimeout(() => {
+        this.messageError = '';
+      }, 3000);
+    }
+  }
+
+  ngOnInit(): void {
+    this.loadData();
+  }
 
   selectPlaylistById(id: Playlist['id']) {
     this.selectedId = id;
-    this.selected = this.playlists.find((p) => p.id === id);
+    this.selected = this.playlists?.find((p) => p.id === id);
+    console.log('this.selected', this.selected);
+    console.log('this.selectedId', this.selectedId);
+  }
+
+  selectPlaylist(draft: Playlist) {
+    this.selectedId = draft.id;
+    this.selected = draft;
   }
 
   mode: 'details' | 'editor' = 'details';
@@ -49,10 +66,16 @@ export class PlaylistsViewContainer {
   }
 
   savePlaylist(draft: Playlist) {
-    const index = this.playlists.findIndex(playlist => playlist.id === draft.id)
-    this.playlists[index] = draft
-    this.selectPlaylistById(draft.id)
+    this.service.changePlaylistDetails(draft).subscribe({
+      next: () => {
+        this.setMessage('SUCCESS', 'The playlist was updated.');
+        this.loadData();
+        this.selectPlaylist(draft);
+      },
+      error: (err) => this.setMessage('ERROR', err.message),
+    });
+
+    this.selectPlaylistById(draft.id);
     this.mode = 'details';
   }
-  
 }

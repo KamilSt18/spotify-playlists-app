@@ -4,22 +4,14 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { FormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
-
 @NgModule({
-  declarations: [
-    PageNotFoundComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    FontAwesomeModule,
-  ],
+  declarations: [PageNotFoundComponent],
+  imports: [CommonModule, FormsModule, FontAwesomeModule],
   exports: [
     CommonModule,
     FormsModule,
     PageNotFoundComponent,
-    FontAwesomeModule
-  ]
+    FontAwesomeModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

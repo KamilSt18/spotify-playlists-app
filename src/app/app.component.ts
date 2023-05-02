@@ -2,7 +2,13 @@ import { Component } from '@angular/core';
 import { AuthService } from './core/services/auth/auth.service';
 import { MusicApiService } from './core/services/music-api/music-api.service';
 import { UserResponse } from './shared/models/UserResponse';
-import { faFacebook, faGithub, faInstagram, faLinkedin, faTwitter } from '@fortawesome/free-brands-svg-icons';
+import {
+  faFacebook,
+  faGithub,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+} from '@fortawesome/free-brands-svg-icons';
 
 @Component({
   selector: 'app-root',
@@ -19,11 +25,11 @@ export class AppComponent {
   dateYear = new Date().getFullYear();
   blendHeader = '/assets/Blend-Header.webp';
   // icons
-  faFacebook = faFacebook
-  faTwitter = faTwitter
-  faInstagram = faInstagram
-  faLinkedin = faLinkedin
-  faGithub = faGithub
+  faFacebook = faFacebook;
+  faTwitter = faTwitter;
+  faInstagram = faInstagram;
+  faLinkedin = faLinkedin;
+  faGithub = faGithub;
 
   ngOnInit(): void {
     this.auth.init();

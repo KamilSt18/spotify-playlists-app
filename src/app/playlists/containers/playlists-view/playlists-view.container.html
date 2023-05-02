@@ -1,27 +1,32 @@
-<p>Select playlist</p>
+<p class="alert alert-danger" *ngIf="messageError">{{ messageError }}</p>
+<p class="alert alert-success" *ngIf="messageSuccess">{{ messageSuccess }}</p>
+<ng-template [ngIf]="playlists">
+  <p>Select playlist</p>
 
-<div class="row">
-  <div class="col">
-    <app-playlists-list
-      [items]="playlists"
-      [selectedId]="selectedId"
-      (selectedIdChange)="selectPlaylistById($event)"
-    ></app-playlists-list>
+  <div class="row">
+    <div class="col">
+      <app-playlists-list
+        [items]="playlists"
+        [selectedId]="selectedId"
+        (selectedIdChange)="selectPlaylistById($event)"
+      ></app-playlists-list>
+    </div>
+
+    <div class="col">
+      <ng-container [ngSwitch]="mode">
+        <app-playlists-details
+          [playlist]="selected"
+          (editClickChange)="editorMode()"
+          *ngSwitchDefault
+        ></app-playlists-details>
+
+        <app-playlists-editor
+          [playlist]="selected"
+          (cancelClickChange)="detailsMode()"
+          (saveClickChange)="savePlaylist($event)"
+          *ngSwitchCase="'editor'"
+        ></app-playlists-editor>
+      </ng-container>
+    </div>
   </div>
-
-  <div class="col">
-
-    <ng-container [ngSwitch]="mode">
-      <app-playlists-details
-      [playlist]="selected" 
-      (editClickChange)="editorMode()"
-      *ngSwitchDefault></app-playlists-details>
-
-      <app-playlists-editor
-      [playlist]="selected"
-      (cancelClickChange)="detailsMode()"
-      (saveClickChange)="savePlaylist($event)"
-      *ngSwitchCase="'editor'"></app-playlists-editor>
-    </ng-container>
-  </div>
-</div>
+</ng-template>

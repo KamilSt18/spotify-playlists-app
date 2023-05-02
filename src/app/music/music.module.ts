@@ -10,18 +10,14 @@ import { AlbumCardComponent } from './components/album-card/album-card.component
 import { SharedModule } from '../shared/shared.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-
 @NgModule({
   declarations: [
     AlbumDetailsViewContainer,
     AlbumSearchViewContainer,
     SearchFormComponent,
     ResultsGridComponent,
-    AlbumCardComponent
+    AlbumCardComponent,
   ],
-  imports: [
-    SharedModule,
-    MusicRoutingModule,
-  ]
+  imports: [SharedModule, MusicRoutingModule],
 })
-export class MusicModule { }
+export class MusicModule {}

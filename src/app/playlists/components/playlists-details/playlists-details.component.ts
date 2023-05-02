@@ -12,6 +12,6 @@ export class PlaylistsDetailsComponent {
   @Output() editClickChange = new EventEmitter();
 
   editClickHandler() {
-    this.editClickChange.emit()
+    this.editClickChange.emit();
   }
 }

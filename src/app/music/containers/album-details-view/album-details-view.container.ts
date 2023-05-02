@@ -27,7 +27,7 @@ export class AlbumDetailsViewContainer {
 
     this.service.fetchAlbumDetails(this.id).subscribe({
       next: (res) => (this.albumDetails = res),
-      error: (err) => this.message = err.message,
+      error: (err) => (this.message = err.message),
     });
   }
 }

@@ -3,8 +3,6 @@
   #myFormRef="ngForm"
   (ngSubmit)="submitEditorHandler(myFormRef)"
 >
-  <pre>{{ playlist | json }}</pre>
-
   <div class="form-group mb-3">
     <label for="playlist_name" class="form-label">Name</label>
     <input
@@ -41,6 +39,6 @@
     ></textarea>
   </div>
 
-  <button class="btn btn-danger" (click)="cancelClickHandler()">Cancel</button>
-  <button class="btn btn-primary" type="submit">Save</button>
+  <button class="btn btn-danger btn-lg mx-1" (click)="cancelClickHandler()">Cancel</button>
+  <button class="btn btn-primary btn-lg mx-1" type="submit">Save</button>
 </form>

@@ -12,14 +12,14 @@ export class AuthService {
   }
 
   logout() {
-    this.oauth.logOut()
+    this.oauth.logOut();
   }
 
   init() {
-    this.oauth.tryLogin()
+    this.oauth.tryLogin();
   }
 
   getToken() {
-    return this.oauth.getAccessToken()
+    return this.oauth.getAccessToken();
   }
 }
